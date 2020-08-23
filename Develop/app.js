@@ -10,26 +10,132 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const allEmployeesArr = [];
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+function writeToFile(fileName, data) {
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+    fs.writeFile(fileName, data, function(err) {
 
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
+        if (err) {
+            return console.log(err);
+        }
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+        console.log("Success!");
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+    })
+
+}
+
+function createManager() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the manager's name?",
+            name: "name"
+        },
+        {
+            type: "input",
+            message: "What is the manager's ID number?",
+            name: "id"
+        },
+        {
+            type: "input",
+            message: "What is the manager's email address?",
+            name: "email"
+        },
+        {
+            type: "input",
+            message: "What is the manager's office number?",
+            name: "officeNumber"
+        }
+    ]).then(function(response) {
+        const manager = new Manager (response.name, response.id, response.email, response.officeNumber);
+        allEmployeesArr.push(manager);
+        createTeam();
+    })
+
+}
+
+function createTeam() {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Choose which type of employee to add.",
+            name: "employeeType",
+            choices: ["Engineer", "Intern", "No other employees"]
+        }
+    ]).then(function(response) {
+        switch(response.employeeType) {
+            case "Engineer":
+                createEngineer();
+                break;
+            case "Intern":
+                createIntern();
+                break;
+            default:
+                const htmlFile = render(allEmployeesArr);
+                writeToFile(outputPath, htmlFile);
+
+        }
+    })
+}
+
+function createEngineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the engineer's name?",
+            name: "name"
+        },
+        {
+            type: "input",
+            message: "What is the engineer's ID number?",
+            name: "id"
+        },
+        {
+            type: "input",
+            message: "What is the engineer's email address?",
+            name: "email"
+        },
+        {
+            type: "input",
+            message: "What is the engineer's github username?",
+            name: "github"
+        }
+    ]).then(function(response) {
+        const engineer = new Engineer (response.name, response.id, response.email, response.github);
+        allEmployeesArr.push(engineer);
+        createTeam();
+    })
+}
+
+function createIntern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the intern's name?",
+            name: "name"
+        },
+        {
+            type: "input",
+            message: "What is the intern's ID number?",
+            name: "id"
+        },
+        {
+            type: "input",
+            message: "What is the intern's email address?",
+            name: "email"
+        },
+        {
+            type: "input",
+            message: "Which school does the intern attend?",
+            name: "school"
+        }
+    ]).then(function(response) {
+        const intern = new Intern (response.name, response.id, response.email, response.school);
+        allEmployeesArr.push(intern);
+        createTeam();
+    })
+}
+
+createManager();

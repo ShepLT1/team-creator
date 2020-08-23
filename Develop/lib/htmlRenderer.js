@@ -3,6 +3,7 @@ const fs = require("fs");
 
 const templatesDir = path.resolve(__dirname, "../templates");
 
+// creates objects (employees) and pushes to html array
 const render = employees => {
   const html = [];
 
@@ -18,7 +19,7 @@ const render = employees => {
     .filter(employee => employee.getRole() === "Intern")
     .map(intern => renderIntern(intern))
   );
-
+  
   return renderMain(html.join(""));
 
 };
