@@ -3,6 +3,7 @@ body {
     color: rgb(233, 233, 233);
 }
 
+/* Header container styling */
 .jumbotron {
     background-color: rgb(53, 53, 53);
     border-bottom: 3px solid rgb(20, 107, 133);
@@ -10,26 +11,31 @@ body {
     padding: 2rem 1rem;
 }
 
+/* Main content container styling */
 .container {
     margin-bottom: 16px;
     max-width: 100%;
 }
 
+/* Employee cards container styling */
 .team-area {
     display: flex;
     flex-wrap: wrap;
 }
 
+/* Employee card styling */
 .card {
     background-color: rgb(53, 53, 53);
     margin: 15px;
     min-width: 250px;
 }
 
+/* Inner employee card styling */
 .list-group-item {
     background-color: rgb(53, 53, 53);
 }
 
+/* Link styling */
 a {
     color: rgb(59, 163, 194);
 }

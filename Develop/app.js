@@ -10,8 +10,10 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+// Array containing all employee objects
 const allEmployeesArr = [];
 
+// Function to write team.html file
 function writeToFile(fileName, data) {
 
     fs.writeFile(fileName, data, function(err) {
@@ -26,6 +28,7 @@ function writeToFile(fileName, data) {
 
 }
 
+// Function to create manager and push to employee object array
 function createManager() {
     inquirer.prompt([
         {
@@ -56,6 +59,7 @@ function createManager() {
 
 }
 
+// Function to determine which type of employee to add and call write html file function if no more employees to add
 function createTeam() {
     inquirer.prompt([
         {
@@ -80,6 +84,7 @@ function createTeam() {
     })
 }
 
+// Function to create engineer and push to employee object array
 function createEngineer() {
     inquirer.prompt([
         {
@@ -109,6 +114,7 @@ function createEngineer() {
     })
 }
 
+// Function to create intern and push to employee object array
 function createIntern() {
     inquirer.prompt([
         {
