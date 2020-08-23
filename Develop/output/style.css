@@ -1,0 +1,47 @@
+body {
+    background-color: rgb(34, 34, 34);
+    color: rgb(233, 233, 233);
+}
+
+.jumbotron {
+    background-color: rgb(53, 53, 53);
+    border-bottom: 3px solid rgb(20, 107, 133);
+    border-radius: 0;
+    padding: 2rem 1rem;
+}
+
+.container {
+    margin-bottom: 16px;
+    max-width: 100%;
+}
+
+.team-area {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: rgb(53, 53, 53);
+    margin: 15px;
+    min-width: 250px;
+}
+
+.list-group-item {
+    background-color: rgb(53, 53, 53);
+}
+
+a {
+    color: rgb(59, 163, 194);
+}
+
+a:hover {
+    color: rgb(38, 134, 164);
+    text-decoration: none;
+}
+
+@media screen and (max-width: 615px) {
+
+    .card {
+        width: 100%;
+    }
+}
